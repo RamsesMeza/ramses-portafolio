@@ -9,6 +9,8 @@ import { FaMessage } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 
+import { ParticlesBackground } from "./components/ParticlesBackground";
+
 import RAM_IMG from "./assets/ram.png";
 
 interface Project {
@@ -141,7 +143,8 @@ function App() {
   return (
     <>
       {/* Header */}
-      <header className="bg-gradient-to-r from-[#106399] to-[#106399] text-white py-8 px-4 sm:px-6 lg:px-8 shadow-xl">
+      <header className=" text-white py-8 px-4 sm:px-6 lg:px-8 shadow-xl">
+        <ParticlesBackground />
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex-shrink-0">
@@ -210,7 +213,7 @@ function App() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+      <main className="max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-black text-gray-800 mb-2">
             Experiencia Profesional
