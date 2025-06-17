@@ -147,7 +147,7 @@ function App() {
                 </div>
 
                 <a
-                  href="https://linkedin.com/in/ramses-meza"
+                  href="https://www.linkedin.com/in/juan-ramses-meza-mart%C3%ADnez-7ba26b29a/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 bg-black bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
