@@ -1,4 +1,3 @@
-"use client";
 import type { FC } from "react";
 import Particles from "react-tsparticles";
 import { loadBasic } from "tsparticles-basic";
