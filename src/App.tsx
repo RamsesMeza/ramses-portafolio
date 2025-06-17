@@ -9,8 +9,6 @@ import { FaMessage } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 
-import { ParticlesBackground } from "./components/ParticlesBackground";
-
 import RAM_IMG from "./assets/ram.png";
 
 interface Project {
@@ -99,52 +97,12 @@ Análisis y limpieza de datos utilizando Python (Pandas) para generar reportes e
       },
     ],
   },
-  {
-    company: "Innovatech",
-    projects: [
-      {
-        name: "API RESTful para Aplicación Móvil",
-        descriptionBullets: [
-          "Desarrollo de un sistema para consultar adeudos de inmuebles relacionados con pagos de agua.",
-          "Implementación de una REST API con Spring Boot.",
-          "Creación de un módulo para generación de constancias de no adeudo en PDF.",
-          "Desarrollo de un módulo de autenticación de usuarios utilizando Spring Security y JWT.",
-          "Diseño y modelado de la base de datos en MySQL.",
-          "Creación de pantallas de autenticación, consulta de adeudos y generación de constancias.",
-          "Desarrollo de formularios dinámicos utilizando Formik y validaciones personalizadas.",
-        ],
-        tags: [
-          TecTagType.REACT,
-          TecTagType.REDUX,
-          TecTagType.TAILWIND_CSS,
-          TecTagType.SPRING_BOOT,
-          TecTagType.JWT,
-          TecTagType.MYSQL,
-          TecTagType.GIT,
-        ],
-      },
-      {
-        name: "Integración con Servicios Externos",
-        descriptionBullets: [
-          "Desarrollo de un sistema para consultar adeudos de inmuebles relacionados con pagos de agua.",
-          "Implementación de una REST API con Spring Boot.",
-          "Creación de un módulo para generación de constancias de no adeudo en PDF.",
-          "Desarrollo de un módulo de autenticación de usuarios utilizando Spring Security y JWT.",
-          "Diseño y modelado de la base de datos en MySQL.",
-          "Creación de pantallas de autenticación, consulta de adeudos y generación de constancias.",
-          "Desarrollo de formularios dinámicos utilizando Formik y validaciones personalizadas.",
-        ],
-        tags: [TecTagType.PYTHON],
-      },
-    ],
-  },
 ];
 function App() {
   return (
     <>
       {/* Header */}
-      <header className=" text-white py-8 px-4 sm:px-6 lg:px-8 shadow-xl">
-        <ParticlesBackground />
+      <header className=" text-white py-8 px-4 sm:px-6 lg:px-8 shadow-xl bg-[#106399]">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex-shrink-0">
@@ -213,7 +171,11 @@ function App() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8 bg-white">
+      <main className="max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+
+        <div className="text-center mb-12 text-4xl">
+          En construcción... 😉
+        </div>
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-black text-gray-800 mb-2">
             Experiencia Profesional
@@ -265,9 +227,6 @@ function App() {
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
                           {project.name}
-                          <span className="text-xs bg-blue-100 text-[#] px-2 py-1 rounded-full">
-                            Proyecto destacado
-                          </span>
                         </h3>
 
                         <div className="flex flex-wrap gap-2 mb-4">
