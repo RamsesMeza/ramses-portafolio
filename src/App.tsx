@@ -10,6 +10,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 
 import RAM_IMG from "./assets/ram.png";
+import Navbar from "./components/Navbar";
 
 interface Project {
   name: string;
@@ -101,6 +102,10 @@ Análisis y limpieza de datos utilizando Python (Pandas) para generar reportes e
 function App() {
   return (
     <>
+
+    <nav>
+      <Navbar />
+    </nav>
       {/* Header */}
       <header className=" text-white py-8 px-4 sm:px-6 lg:px-8 shadow-xl bg-[#106399]">
         <div className="max-w-6xl mx-auto">
