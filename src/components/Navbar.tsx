@@ -1,4 +1,5 @@
 import { useTranslations } from "../hooks/useLanguage";
+import MenuMobile from "./MobileMenu";
 import ToggleLanguageButton from "./ToggleLanguage";
 
 function Navbar() {
@@ -16,21 +17,27 @@ function Navbar() {
             />
             <p>Devsarrollos.com</p>
           </div>
-          <ul className="flex space-x-4 items-center">
-            {t.navbar?.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className="text-gray-300 hover:text-white"
-                >
-                  {item.label}
-                </a>
+          <div className="md:hidden flex items-center gap-2">   
+            <ToggleLanguageButton />
+            <MenuMobile />
+          </div>
+          <div className="hidden md:flex">
+            <ul className="flex space-x-4 items-center">
+              {t.navbar?.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    className="text-gray-300 hover:text-white"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <ToggleLanguageButton />
               </li>
-            ))}
-            <li>
-              <ToggleLanguageButton />
-            </li>
-          </ul>
+            </ul>
+          </div>
         </div>
       </nav>
     </div>

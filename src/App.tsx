@@ -135,21 +135,21 @@ function App() {
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                 <a
                   href="mailto:ramseswardof@gmail.com"
-                  className="flex items-center gap-2 bg-black bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
+                  className="flex items-center gap-2 bg-gray-800 bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
                 >
-                  <IoIosMail className="text-xl" />
+                  <IoIosMail className="text-2xl" />
                   <span className="truncate">ramseswardof@gmail.com</span>
                 </a>
 
                 <a
                   href="tel:4495147882"
-                  className="flex items-center gap-2 bg-black bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
+                  className="flex items-center gap-2 bg-gray-800 bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
                 >
                   <FaPhone className="text-lg" />
                   <span>449-514-78-82</span>
                 </a>
 
-                <div className="flex items-center gap-2 bg-black bg-opacity-50 px-4 py-2 rounded-4xl">
+                <div className="flex items-center gap-2 bg-gray-800 bg-opacity-50 px-4 py-2 rounded-4xl">
                   <FaMessage className="text-lg" />
                   <span>Inglés B2</span>
                 </div>
@@ -158,7 +158,7 @@ function App() {
                   href="https://www.linkedin.com/in/juan-ramses-meza-mart%C3%ADnez-7ba26b29a/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-black bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
+                  className="flex items-center gap-2 bg-gray-800 bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
                 >
                   <FaLinkedin className="text-xl" />
                   <span>LinkedIn</span>
@@ -168,7 +168,7 @@ function App() {
                   href="https://devsarrollos.com/ramses-meza"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-black bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
+                  className="flex items-center gap-2 bg-gray-800 bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
                 >
                   <TbWorld className="text-xl" />
                   <span className="truncate">devsarrollos.com/ramses-meza</span>
