@@ -11,6 +11,8 @@ import { IoIosMail } from "react-icons/io";
 
 import RAM_IMG from "./assets/ram.png";
 import Navbar from "./components/Navbar";
+import { useTranslations } from "./hooks/useLanguage";
+
 
 interface Project {
   name: string;
@@ -100,12 +102,13 @@ Análisis y limpieza de datos utilizando Python (Pandas) para generar reportes e
   },
 ];
 function App() {
-  return (
-    <>
 
-    <nav>
+  const t = useTranslations();
+  return (
+    <div>
+
       <Navbar />
-    </nav>
+  
       {/* Header */}
       <header className=" text-white py-8 px-4 sm:px-6 lg:px-8 shadow-xl bg-[#106399]">
         <div className="max-w-6xl mx-auto">
@@ -123,10 +126,10 @@ function App() {
 
             <div className="text-center md:text-left">
               <h1 className="text-3xl md:text-4xl font-black tracking-tight">
-                Juan Ramses Meza Martinez
+                {t.header.title}
               </h1>
               <p className="text-xl md:text-2xl font-bold text-blue-100 mt-1">
-                DESARROLLADOR FULLSTACK
+                {t.header.description}
               </p>
 
               <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -262,7 +265,7 @@ function App() {
           ))}
         </div>
       </main>
-    </>
+    </div>
   );
 }
 
