@@ -165,13 +165,13 @@ function App() {
                 </a>
 
                 <a
-                  href="https://devsarollos.com/ramses-meza"
+                  href="https://devsarrollos.com/ramses-meza"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 bg-black bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
                 >
                   <TbWorld className="text-xl" />
-                  <span className="truncate">devsarollos.com/ramses-meza</span>
+                  <span className="truncate">devsarrollos.com/ramses-meza</span>
                 </a>
               </div>
             </div>
