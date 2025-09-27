@@ -2,268 +2,476 @@ import "@fontsource/nunito/400.css";
 import "@fontsource/nunito/700.css";
 import "@fontsource/nunito/900.css";
 
-import { TecTag, TecTagType } from "./components/TecTag";
-import { TbWorld } from "react-icons/tb";
-import { FaPhone } from "react-icons/fa";
-import { FaMessage } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
-import { IoIosMail } from "react-icons/io";
-
-import RAM_IMG from "./assets/ram.png";
+import { useMemo } from "react";
+import type { IconType } from "react-icons";
+import {
+  FiMail,
+  FiMapPin,
+  FiGithub,
+  FiLinkedin,
+  FiGlobe,
+} from "react-icons/fi";
 import Navbar from "./components/Navbar";
+import { TecTag } from "./components/TecTag";
+import SectionHeading from "./components/SectionHeading";
+import { ParticlesBackground } from "./components/ParticlesBackground";
+import { Reveal } from "./components/Reveal";
+import RAM_IMG from "./assets/ram.png";
+import CV_EN from "./EN_2025_Sep_Simple_Ramses_CV.pdf?url";
 import { useTranslations } from "./hooks/useLanguage";
+import { useLanguage } from "./contexts/LanguageProvider";
+import {
+  aboutParagraphs,
+  contactLinks,
+  courseGroups,
+  educationRecords,
+  experiences,
+  heroStats,
+  projectHighlights,
+  stackCategories,
+  type LocalizedString,
+  type ContactLinkId,
+} from "./data/content";
 
+const getText = (value: LocalizedString, language: "en" | "es") =>
+  value[language];
 
-interface Project {
-  name: string;
-  descriptionBullets: string[];
-  tags: TecTagType[];
-}
+const CONTACT_ICON_MAP: Record<ContactLinkId, IconType> = {
+  email: FiMail,
+  location: FiMapPin,
+  github: FiGithub,
+  linkedin: FiLinkedin,
+  portfolio: FiGlobe,
+};
 
-interface WorkExperience {
-  company: string;
-  projects: Project[];
-}
-
-const workExperiences: WorkExperience[] = [
-  {
-    company: "MIAA | Desarrollador FullStack | 2025 - Actualidad",
-    projects: [
-      {
-        name: "Proyecto Notarios",
-        descriptionBullets: [
-          "Desarrollo de un sistema para consultar adeudos de inmuebles relacionados con pagos de agua.",
-          "Implementación de una REST API con Spring Boot.",
-          "Creación de un módulo para generación de constancias de no adeudo en PDF.",
-          "Desarrollo de un módulo de autenticación de usuarios utilizando Spring Security y JWT.",
-          "Diseño y modelado de la base de datos en MySQL.",
-          "Creación de pantallas de autenticación, consulta de adeudos y generación de constancias.",
-          "Desarrollo de formularios dinámicos utilizando Formik y validaciones personalizadas.",
-        ],
-        tags: [
-          TecTagType.REACT,
-          TecTagType.REDUX,
-          TecTagType.TAILWIND_CSS,
-          TecTagType.SPRING_BOOT,
-          TecTagType.JWT,
-          TecTagType.MYSQL,
-          TecTagType.GIT,
-        ],
-      },
-      {
-        name: "Proyecto Recursos Humanos",
-        /*Refactorización y optimización de un sistema heredado, mejorando la seguridad, el rendimiento y la experiencia de usuario.   
-Desarrollo de nuevas funcionalidades alineadas a procesos internos de Recursos Humanos, incluyendo:
-Creación del módulo de incidencias de asistencia.
-Mejora del módulo de horarios.
-Corrección de bugs en módulos existentes.
-Implementación de un logger de errores en la REST API para facilitar la identificación y resolución de bugs.
-Análisis y limpieza de datos utilizando Python (Pandas) para generar reportes específicos solicitados por el departamento de RH.  */
-        descriptionBullets: [
-          "Refactorización y optimización de un sistema heredado, mejorando la seguridad, el rendimiento y la experiencia de usuario.",
-          "Desarrollo de nuevas funcionalidades alineadas a procesos internos de Recursos Humanos, incluyendo:",
-          "Creación del módulo de incidencias de asistencia.",
-          "Mejora del módulo de horarios.",
-          "Corrección de bugs en módulos existentes.",
-          "Implementación de un logger de errores en la REST API para facilitar la identificación y resolución de bugs.",
-          "Análisis y limpieza de datos utilizando Python (Pandas) para generar reportes específicos solicitados por el departamento de RH.",
-        ],
-        tags: [
-          TecTagType.REACT,
-          TecTagType.REDUX,
-          TecTagType.TAILWIND_CSS,
-          TecTagType.SPRING_BOOT,
-          TecTagType.JWT,
-          TecTagType.MYSQL,
-          TecTagType.PYTHON,
-          TecTagType.GIT,
-        ],
-      },
-      {
-        name: "Aplicación checador de Recursos Humanos",
-        descriptionBullets: [
-          "Refactorización de una aplicación existente desarrollada en JavaScript, migrando e implementando TypeScript para mejorar la mantenibilidad y detección temprana de errores.",
-          "Implementación de Zustand como gestor de estado para mejorar la gestión y rendimiento de la aplicación.",
-          "Corrección de errores relacionados con el registro de asistencia y ubicación.",
-          "Mejora del diseño de componentes utilizando NativeWind.",
-        ],
-        tags: [
-          TecTagType.REACT,
-          TecTagType.REDUX,
-          TecTagType.TAILWIND_CSS,
-          TecTagType.SPRING_BOOT,
-          TecTagType.JWT,
-          TecTagType.MYSQL,
-          TecTagType.PYTHON,
-          TecTagType.GIT,
-        ],
-      },
-    ],
-  },
-];
 function App() {
-
   const t = useTranslations();
+  const { language } = useLanguage();
+
+  const heroStatsList = useMemo(
+    () =>
+      heroStats.map((stat) => (
+        <div
+          key={stat.value + stat.label.en}
+          className="rounded-2xl border border-white/20 bg-white/10 p-4 text-center backdrop-blur"
+        >
+          <span className="text-3xl font-black text-white sm:text-4xl">
+            {stat.value}
+          </span>
+          <p className="mt-2 text-sm font-semibold tracking-wide text-blue-100">
+            {getText(stat.label, language)}
+          </p>
+        </div>
+      )),
+    [language]
+  );
+
   return (
-    <div>
-
+    <div className="bg-slate-50 text-slate-900">
       <Navbar />
-  
-      {/* Header */}
-      <header className=" text-white py-8 px-4 sm:px-6 lg:px-8 shadow-xl bg-[#106399]">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="flex-shrink-0">
-              <div className="relative">
-                <img
-                  src={RAM_IMG}
-                  alt="Juan Ramses Meza Martinez"
-                  className="w-60 h-60 md:w-48 md:h-48 rounded-full object-cover shadow-2xl"
-                  loading="lazy"
-                />
-              </div>
-            </div>
 
-            <div className="text-center md:text-left">
-              <h1 className="text-3xl md:text-4xl font-black tracking-tight">
-                {t.header.title}
+      <main>
+        <section id="home" className="relative overflow-hidden">
+          <div className="absolute inset-0">
+            <ParticlesBackground />
+            <div className="absolute inset-0 bg-[#0f5f8f]/90"></div>
+          </div>
+
+          <div className="relative mx-auto grid max-w-6xl gap-16 px-4 py-20 sm:px-6 lg:grid-cols-[1.15fr_1fr] lg:px-0">
+            <Reveal
+              className="flex flex-col justify-center text-white"
+              direction="up"
+            >
+              <span className="text-sm font-semibold uppercase tracking-[0.35em] text-blue-100">
+                {t.hero.subtitle}
+              </span>
+              <h1 className="mt-4 text-4xl font-black sm:text-5xl md:text-6xl">
+                {t.hero.title}
               </h1>
-              <p className="text-xl md:text-2xl font-bold text-blue-100 mt-1">
-                {t.header.description}
+              <p className="mt-6 text-lg text-blue-100 sm:text-xl">
+                {t.hero.description}
               </p>
 
-              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div className="mt-8 flex flex-wrap gap-4">
                 <a
-                  href="mailto:ramseswardof@gmail.com"
-                  className="flex items-center gap-2 bg-gray-800 bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
+                  href={CV_EN}
+                  download
+                  className="rounded-full bg-white/90 px-6 py-3 text-sm font-bold uppercase tracking-wide text-[#0f5f8f] transition hover:bg-white"
                 >
-                  <IoIosMail className="text-2xl" />
-                  <span className="truncate">ramseswardof@gmail.com</span>
+                  {t.hero.primaryCta}
                 </a>
-
                 <a
-                  href="tel:4495147882"
-                  className="flex items-center gap-2 bg-gray-800 bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
+                  href="#contact"
+                  className="rounded-full border border-white/60 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-white/10"
                 >
-                  <FaPhone className="text-lg" />
-                  <span>449-514-78-82</span>
+                  {t.hero.secondaryCta}
                 </a>
+              </div>
 
-                <div className="flex items-center gap-2 bg-gray-800 bg-opacity-50 px-4 py-2 rounded-4xl">
-                  <FaMessage className="text-lg" />
-                  <span>Inglés B2</span>
+              <p className="mt-10 text-xs font-semibold uppercase tracking-[0.4em] text-blue-200">
+                {t.hero.contactCaption}
+              </p>
+              <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                {heroStatsList}
+              </div>
+            </Reveal>
+
+            <aside className="flex justify-center lg:justify-end">
+              <Reveal
+                className="relative w-full max-w-sm"
+                direction="right"
+                delay={0.1}
+              >
+                <div className="absolute inset-0 -translate-y-6 translate-x-6 rounded-3xl bg-white/10 blur-xl"></div>
+                <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-white/10 backdrop-blur">
+                  <img
+                    src={RAM_IMG}
+                    alt="Juan Ramses Meza Martínez"
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="border-t border-white/20 bg-[#0f5f8f]/80 p-6 text-white">
+                    <p className="text-sm font-semibold text-blue-100">
+                      {t.contact.availability}
+                    </p>
+                    <p className="mt-2 text-lg font-bold">Aguascalientes, MX</p>
+                  </div>
                 </div>
+              </Reveal>
+            </aside>
+          </div>
+        </section>
 
-                <a
-                  href="https://www.linkedin.com/in/juan-ramses-meza-mart%C3%ADnez-7ba26b29a/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-gray-800 bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
-                >
-                  <FaLinkedin className="text-xl" />
-                  <span>LinkedIn</span>
-                </a>
+        <section
+          id="tech-stack"
+          className="mx-auto max-w-6xl px-4 py-20 sm:px-6"
+        >
+          <Reveal>
+            <SectionHeading
+              title={
+                language === "en"
+                  ? "My Technologies & Stack"
+                  : "Mis Tecnologías y Stack"
+              }
+              description={
+                language === "en"
+                  ? "Core technologies I reach for when designing resilient, user-focused products."
+                  : "Tecnologías clave que utilizo para crear productos resilientes y centrados en el usuario."
+              }
+              align="left"
+            />
+          </Reveal>
+          <div className="grid gap-6 lg:grid-cols-2">
+            {stackCategories.map((category, index) => (
+              <Reveal
+                key={category.id}
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+                delay={index * 0.05}
+              >
+                <h3 className="text-lg font-bold text-[#0f5f8f]">
+                  {getText(category.title, language)}
+                </h3>
+                <p className="mt-2 text-sm text-slate-600">
+                  {getText(category.description, language)}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {category.tags.map((tag) => (
+                    <TecTag key={`${category.id}-${tag}`} type={tag} />
+                  ))}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
 
-                <a
-                  href="https://devsarrollos.com/ramses-meza"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-gray-800 bg-opacity-50 hover:bg-opacity-70 transition-all px-4 py-2 rounded-4xl"
+        <section id="experience" className="bg-white pt-20">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <Reveal>
+              <SectionHeading
+                title={
+                  language === "en" ? "Work Experience" : "Experiencia Laboral"
+                }
+                description={
+                  language === "en"
+                    ? "Spanning public services, education, and commerce."
+                    : "Cobertura en servicios públicos, educación y comercio."
+                }
+                align="left"
+              />
+            </Reveal>
+            <div className="relative border-l border-slate-200 pl-8">
+              {experiences.map((experience, index) => (
+                <Reveal
+                  key={experience.id}
+                  className="relative mb-12 last:mb-0"
+                  delay={index * 0.1}
+                  direction="left"
                 >
-                  <TbWorld className="text-xl" />
-                  <span className="truncate">devsarrollos.com/ramses-meza</span>
-                </a>
+                  <span className="absolute -left-[37px] mt-1 flex h-3 w-3 items-center justify-center rounded-full border-4 border-white bg-[#0f5f8f]"></span>
+                  <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-6 shadow-sm">
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="flex flex-col gap-3">
+                        {experience.logo ? (
+                          <img
+                            src={experience.logo}
+                            alt={`${experience.company} logo`}
+                            className={`h-14 w-40 max-w-full flex-shrink-0 rounded-xl border border-slate-200 object-contain p-2 ${
+                              experience.id === "designa"
+                                ? "bg-slate-900"
+                                : "bg-white"
+                            }`}
+                            loading="lazy"
+                          />
+                        ) : null}
+                        <h3 className="text-xl font-black text-slate-900">
+                          {getText(experience.role, language)}
+                        </h3>
+                      </div>
+                      <div className="text-left sm:text-right">
+                        <p className="text-sm font-semibold uppercase tracking-wide text-[#0f5f8f]">
+                          {experience.company}
+                        </p>
+                        <span className="text-sm font-medium text-slate-500">
+                          {experience.timeframe}
+                        </span>
+                      </div>
+                    </div>
+                    <p className="mt-6 text-base text-slate-600">
+                      {getText(experience.summary, language)}
+                    </p>
+                    <ul className="mt-6 space-y-3 text-sm text-slate-600">
+                      {experience.highlights.map((highlight, index) => (
+                        <li key={index} className="flex gap-3">
+                          <span className="mt-[6px] inline-block h-2 w-2 rounded-full bg-[#0f5f8f]"></span>
+                          <span>{getText(highlight.summary, language)}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" className="bg-white py-20">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <Reveal>
+              <SectionHeading
+                title={language === "en" ? "Projects" : "Proyectos"}
+                description={
+                  language === "en"
+                    ? "Snapshots of the outcomes I deliver across complex product initiatives."
+                    : "Instantáneas del impacto entregado en iniciativas de producto complejas."
+                }
+                align="left"
+              />
+            </Reveal>
+            <div className="grid gap-6 lg:grid-cols-3">
+              {projectHighlights.map((project, index) => (
+                <Reveal
+                  key={project.id}
+                  className="flex h-full flex-col rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm"
+                  delay={index * 0.08}
+                >
+                  <h3 className="text-xl font-black text-slate-900">
+                    {getText(project.title, language)}
+                  </h3>
+                  <p className="mt-4 text-sm text-slate-600">
+                    {getText(project.context, language)}
+                  </p>
+                  <p className="mt-3 text-sm font-semibold text-[#0f5f8f]">
+                    {getText(project.outcome, language)}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {project.technologies.map((technology) => (
+                      <TecTag
+                        key={`${project.id}-${technology}`}
+                        type={technology}
+                      />
+                    ))}
+                  </div>
+                  {project.link ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-auto pt-6 text-sm font-semibold text-[#0f5f8f] hover:underline"
+                    >
+                      {t.projects.linkLabel}
+                    </a>
+                  ) : null}
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="courses" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <Reveal>
+            <SectionHeading
+              title={
+                language === "en"
+                  ? "Education, Courses & Continuous Upskilling"
+                  : "Educación, Cursos y Actualización Continua"
+              }
+              description={t.courses.intro}
+              align="left"
+            />
+          </Reveal>
+          <div className="grid gap-6 lg:grid-cols-2">
+            {educationRecords.map((record, index) => (
+              <Reveal
+                key={record.institution}
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+                delay={index * 0.1}
+              >
+                {record.logo ? (
+                  <img
+                    src={record.logo}
+                    alt={`${record.institution} logo`}
+                    className="mb-4 h-12 w-auto object-contain"
+                    loading="lazy"
+                  />
+                ) : null}
+                <header className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:justify-between">
+                  <div>
+                    <h3 className="text-lg font-bold text-[#0f5f8f]">
+                      {record.institution}
+                    </h3>
+                    <p className="text-base font-semibold text-slate-900">
+                      {getText(record.degree, language)}
+                    </p>
+                  </div>
+                  <span className="text-sm font-medium text-slate-500">
+                    {record.timeframe}
+                  </span>
+                </header>
+                <ul className="mt-4 space-y-3 text-sm text-slate-600">
+                  {record.highlights.map((highlight, index) => (
+                    <li key={index} className="flex gap-3">
+                      <span className="mt-[6px] inline-block h-2 w-2 rounded-full bg-[#0f5f8f]"></span>
+                      <span>{getText(highlight, language)}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            ))}
+            {courseGroups.map((group, index) => (
+              <Reveal
+                key={group.provider}
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+                delay={0.1 * (educationRecords.length + index)}
+              >
+                {group.logo ? (
+                  <img
+                    src={group.logo}
+                    alt={`${group.provider} logo`}
+                    className="mb-4 h-10 w-auto object-contain"
+                    loading="lazy"
+                  />
+                ) : null}
+                <h3 className="text-lg font-bold text-[#0f5f8f]">
+                  {group.provider}
+                </h3>
+                <ul className="mt-4 space-y-2 text-sm text-slate-600">
+                  {group.topics.map((course) => (
+                    <li key={course} className="flex gap-3">
+                      <span className="mt-[6px] inline-block h-2 w-2 rounded-full bg-[#0f5f8f]"></span>
+                      <span>{course}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <section
+          id="about-contact"
+          className="bg-gradient-to-br from-[#0f5f8f] to-[#072f4c] py-20 text-white"
+        >
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
+              <div className="space-y-8">
+                <Reveal direction="up">
+                  <SectionHeading
+                    title={t.hero.subtitle}
+                    description={getText(aboutParagraphs[0], language)}
+                    align="left"
+                    theme="dark"
+                  />
+                </Reveal>
+                <Reveal className="space-y-4 text-base text-blue-100/90 sm:text-lg">
+                  {aboutParagraphs.slice(1).map((paragraph, index) => (
+                    <p key={index}>{getText(paragraph, language)}</p>
+                  ))}
+                </Reveal>
+                <Reveal
+                  className="relative hidden overflow-hidden rounded-3xl border border-white/20 bg-white/10 shadow-lg backdrop-blur lg:block lg:max-w-md"
+                  delay={0.15}
+                >
+                  <img
+                    src={RAM_IMG}
+                    alt="Juan Ramses Meza Martínez"
+                    className="h-full w-full object-cover opacity-90"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#072f4c] via-[#0f5f8f]/80 to-transparent p-6">
+                    <p className="text-sm font-semibold text-blue-100">
+                      {language === "en"
+                        ? "Based in Aguascalientes, MX"
+                        : "Radicado en Aguascalientes, MX"}
+                    </p>
+                  </div>
+                </Reveal>
+              </div>
+
+              <div>
+                <Reveal
+                  className="rounded-3xl border border-white/20 bg-white/15 p-6 backdrop-blur"
+                  direction="up"
+                  delay={0.1}
+                >
+                  <h3 className="text-lg font-semibold text-blue-100">
+                    {language === "en" ? "Direct Contact" : "Contacto directo"}
+                  </h3>
+                  <p className="mt-4 text-sm text-blue-100/90">
+                    {language === "en"
+                      ? "Let’s craft solutions that fit your roadmap. Choose the best channel and I’ll respond within one business day."
+                      : "Construyamos soluciones alineadas a tu hoja de ruta. Elige el canal ideal y responderé dentro de un día hábil."}
+                  </p>
+                  <ul className="mt-6 space-y-4 text-sm">
+                    {contactLinks.map((link) => {
+                      const Icon = CONTACT_ICON_MAP[link.id];
+                      return (
+                        <li key={link.href}>
+                          <a
+                            href={link.href}
+                            target={
+                              link.href.startsWith("http")
+                                ? "_blank"
+                                : undefined
+                            }
+                            rel="noopener noreferrer"
+                            className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white transition hover:border-white/30 hover:bg-white/10"
+                          >
+                            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
+                              <Icon className="text-lg" aria-hidden />
+                            </span>
+                            <span className="text-sm font-semibold leading-tight">
+                              {link.label}
+                            </span>
+                          </a>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </Reveal>
               </div>
             </div>
           </div>
-        </div>
-      </header>
-
-      <main className="max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-
-        <div className="text-center mb-12 text-4xl">
-          En construcción... 😉
-        </div>
-        <div className="mb-12 text-center">
-          <h2 className="text-3xl font-black text-gray-800 mb-2">
-            Experiencia Profesional
-          </h2>
-          <div className="w-20 h-1 bg-[#106399] mx-auto rounded-full"></div>
-        </div>
-
-        <div className="space-y-12">
-          {workExperiences.map((experience, index) => (
-            <section
-              key={index}
-              className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200"
-            >
-              <div className="bg-gradient-to-r from-blue-50 to-blue-100 px-6 py-4 border-b border-blue-200">
-                <h2 className="text-xl md:text-2xl font-black text-[#] flex items-center gap-2">
-                  <span className="bg-[#106399] text-white rounded-full w-8 h-8 flex items-center justify-center text-lg">
-                    {index + 1}
-                  </span>
-                  {experience.company}
-                </h2>
-              </div>
-
-              <div className="p-6 grid gap-8">
-                {experience.projects.map((project, projectIndex) => (
-                  <div
-                    key={projectIndex}
-                    className="bg-gray-50 p-6 rounded-xl border border-gray-100 hover:shadow-md transition-shadow"
-                  >
-                    <div className="flex flex-col md:flex-row gap-6">
-                      <div className="flex-shrink-0">
-                        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16 flex items-center justify-center text-[#106399]">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-8 w-8"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold text-gray-800 mb-3 flex items-center gap-2">
-                          {project.name}
-                        </h3>
-
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {project.tags.map((tag, tagIndex) => (
-                            <TecTag key={tagIndex} type={tag} />
-                          ))}
-                        </div>
-
-                        <ul className="space-y-2 text-gray-700">
-                          {project.descriptionBullets.map(
-                            (bullet, bulletIndex) => (
-                              <li
-                                key={bulletIndex}
-                                className="flex items-start gap-2"
-                              >
-                                <span className="text-[#106399] mt-1">•</span>
-                                <span>{bullet}</span>
-                              </li>
-                            )
-                          )}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
+        </section>
       </main>
     </div>
   );
