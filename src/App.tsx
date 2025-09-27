@@ -53,7 +53,7 @@ function App() {
       heroStats.map((stat) => (
         <div
           key={stat.value + stat.label.en}
-          className="rounded-2xl border border-white/20 bg-white/10 p-4 text-center backdrop-blur"
+          className="rounded-2xl border border-white/20 bg-white/10 p-4 text-center backdrop-blur transition-transform duration-300 hover:-translate-y-1 hover:bg-white/20 hover:shadow-lg"
         >
           <span className="text-3xl font-black text-white sm:text-4xl">
             {stat.value}
@@ -116,27 +116,46 @@ function App() {
               </div>
             </Reveal>
 
-            <aside className="flex justify-center lg:justify-end">
+            <aside className="flex w-full justify-center lg:justify-end">
               <Reveal
-                className="relative w-full max-w-sm"
+                className="w-full rounded-3xl border border-white/20 bg-white/15 p-6 backdrop-blur transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-white/60 hover:bg-white/20"
                 direction="right"
                 delay={0.1}
               >
-                <div className="absolute inset-0 -translate-y-6 translate-x-6 rounded-3xl bg-white/10 blur-xl"></div>
-                <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-white/10 backdrop-blur">
-                  <img
-                    src={RAM_IMG}
-                    alt="Juan Ramses Meza Martínez"
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="border-t border-white/20 bg-[#0f5f8f]/80 p-6 text-white">
-                    <p className="text-sm font-semibold text-blue-100">
-                      {t.contact.availability}
-                    </p>
-                    <p className="mt-2 text-lg font-bold">Aguascalientes, MX</p>
-                  </div>
-                </div>
+                <h3 className="text-lg font-semibold text-blue-100">
+                  {language === "en" ? "Direct Contact" : "Contacto directo"}
+                </h3>
+                <p className="mt-4 text-sm text-blue-100/90">
+                  {language === "en"
+                    ? "Let’s craft solutions that fit your roadmap. Choose the best channel and I’ll respond within one business day."
+                    : "Construyamos soluciones alineadas a tu hoja de ruta. Elige el canal ideal y responderé dentro de un día hábil."}
+                </p>
+                <ul className="mt-6 space-y-4 text-sm">
+                  {contactLinks.map((link) => {
+                    const Icon = CONTACT_ICON_MAP[link.id];
+                    return (
+                      <li key={link.href}>
+                        <a
+                          href={link.href}
+                          target={
+                            link.href.startsWith("http")
+                              ? "_blank"
+                              : undefined
+                          }
+                          rel="noopener noreferrer"
+                          className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white transition hover:border-white/30 hover:bg-white/10"
+                        >
+                          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10">
+                            <Icon className="text-lg" aria-hidden />
+                          </span>
+                          <span className="text-sm font-semibold leading-tight">
+                            {link.label}
+                          </span>
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
               </Reveal>
             </aside>
           </div>
@@ -448,7 +467,7 @@ function App() {
 
               <div>
                 <Reveal
-                  className="rounded-3xl border border-white/20 bg-white/15 p-6 backdrop-blur transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-white/40"
+                  className="rounded-3xl border border-white/20 bg-white/15 p-6 backdrop-blur transition duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-white/60 hover:bg-white/20"
                   direction="up"
                   delay={0.1}
                 >
