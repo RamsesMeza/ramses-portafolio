@@ -4,7 +4,7 @@ import DESIGNA_LOGO from "../assets/designa-logo.svg";
 import INSEEL_LOGO from "../assets/inseel-logo.png";
 import UPA_LOGO from "../assets/upa-logo.jpg";
 import DEVTALLES_LOGO from "../assets/devtalles-logo.webp";
-import UDEMY_LOGO from "../assets/udemy-logo.jpeg";
+import UDEMY_LOGO from "../assets/udemy-logo.png";
 
 export type LocalizedString = {
   en: string;
@@ -47,6 +47,8 @@ export interface ProjectHighlight {
   outcome: LocalizedString;
   technologies: TecTagType[];
   link?: string;
+  company?: string;
+  logo?: string;
 }
 
 export interface EducationRecord {
@@ -405,6 +407,8 @@ export const projectHighlights: ProjectHighlight[] = [
       TecTagType.REACT,
       TecTagType.ANT_DESIGN,
     ],
+    company: "MIAA",
+    logo: MIAA_LOGO,
   },
   {
     id: "survey",
@@ -426,6 +430,8 @@ export const projectHighlights: ProjectHighlight[] = [
       TecTagType.ANT_DESIGN,
       TecTagType.SPRING_BOOT,
     ],
+    company: "MIAA",
+    logo: MIAA_LOGO,
   },
   {
     id: "hr-refactor",
@@ -449,6 +455,8 @@ export const projectHighlights: ProjectHighlight[] = [
       TecTagType.REDUX,
       TecTagType.PYTHON,
     ],
+    company: "MIAA",
+    logo: MIAA_LOGO,
   },
   {
     id: "mobile-checkin",
@@ -470,6 +478,8 @@ export const projectHighlights: ProjectHighlight[] = [
       TecTagType.ZUSTAND,
       TecTagType.SPRING_BOOT,
     ],
+    company: "MIAA",
+    logo: MIAA_LOGO,
   },
   {
     id: "causanatura",
@@ -478,12 +488,12 @@ export const projectHighlights: ProjectHighlight[] = [
       es: "Rediseño Causanatura Media",
     },
     context: {
-      en: "Full migration to Next.js + Strapi with AWS hosting and localization.",
-      es: "Migración completa a Next.js + Strapi con hosting en AWS y localización.",
+      en: "Migration from WordPress to a modern Next.js + Strapi stack with AWS hosting.",
+      es: "Migración de WordPress a un stack moderno con Next.js + Strapi y hosting en AWS.",
     },
     outcome: {
-      en: "Improved performance and donations by 30%.",
-      es: "Mejoró el rendimiento y donaciones en 30%.",
+      en: "Delivered better performance, multilingual support, and maintainable content workflows.",
+      es: "Entregó mejor rendimiento, soporte multilingüe y flujos de contenido mantenibles.",
     },
     technologies: [
       TecTagType.NEXT_JS,
@@ -492,6 +502,8 @@ export const projectHighlights: ProjectHighlight[] = [
       TecTagType.AWS,
     ],
     link: "https://causanaturamedia.com/",
+    company: "DESIGNA",
+    logo: DESIGNA_LOGO,
   },
   {
     id: "course-management",
@@ -512,6 +524,8 @@ export const projectHighlights: ProjectHighlight[] = [
       TecTagType.AWS,
       TecTagType.POSTGRESQL,
     ],
+    company: "DESIGNA",
+    logo: DESIGNA_LOGO,
   },
   {
     id: "certification-platform",
@@ -537,6 +551,8 @@ export const projectHighlights: ProjectHighlight[] = [
       TecTagType.GITHUB_ACTIONS,
     ],
     link: "https://plataforma286.ortegaygasset.mx/",
+    company: "DESIGNA",
+    logo: DESIGNA_LOGO,
   },
   {
     id: "analytics-dashboard",
@@ -557,6 +573,8 @@ export const projectHighlights: ProjectHighlight[] = [
       TecTagType.PANDAS,
       TecTagType.TABLEAU,
     ],
+    company: "DESIGNA",
+    logo: DESIGNA_LOGO,
   },
   {
     id: "tecnoimports",
@@ -579,6 +597,8 @@ export const projectHighlights: ProjectHighlight[] = [
       TecTagType.CSS_HTML,
     ],
     link: "https://tecnoimports.com/",
+    company: "INSEEL",
+    logo: INSEEL_LOGO,
   },
   {
     id: "inseel-store",
@@ -601,6 +621,8 @@ export const projectHighlights: ProjectHighlight[] = [
       TecTagType.PHP,
     ],
     link: "https://inseel.com/",
+    company: "INSEEL",
+    logo: INSEEL_LOGO,
   },
 ];
 

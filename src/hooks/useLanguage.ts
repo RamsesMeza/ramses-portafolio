@@ -14,7 +14,7 @@ const translations = {
       title: "Juan Ramses Meza Martínez",
       subtitle: "Full-Stack Developer",
       description:
-        "I design, build, and ship data-driven products for government, education, and e-commerce teams—delivering secure APIs, dynamic frontends, and cloud-ready pipelines.",
+        "Computer Systems Engineering graduate from Universidad Politécnica de Aguascalientes with hands-on experience building scalable web and mobile applications using JavaScript, Java, Python, and C#. Passionate about exploring new technologies, collaborating across teams, and crafting user-centered designs.",
       primaryCta: "Download CV",
       secondaryCta: "Book a call",
       contactCaption: "Let’s build something",
@@ -67,7 +67,7 @@ const translations = {
       title: "Juan Ramses Meza Martínez",
       subtitle: "Desarrollador Full-Stack",
       description:
-        "Diseño, construyo y publico productos impulsados por datos para equipos de gobierno, educación y e-commerce, entregando APIs seguras, frontends dinámicos y pipelines listos para la nube.",
+        "Ingeniero en Sistemas Computacionales egresado de la Universidad Politécnica de Aguascalientes con experiencia práctica construyendo aplicaciones web y móviles escalables usando JavaScript, Java, Python y C#. Apasionado por explorar nuevas tecnologías, colaborar con equipos multidisciplinarios y crear experiencias centradas en el usuario.",
       primaryCta: "Descargar CV",
       secondaryCta: "Agenda una llamada",
       contactCaption: "Construyamos algo",

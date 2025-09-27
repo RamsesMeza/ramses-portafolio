@@ -165,7 +165,7 @@ function App() {
             {stackCategories.map((category, index) => (
               <Reveal
                 key={category.id}
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-[#0f5f8f]/40"
                 delay={index * 0.05}
               >
                 <h3 className="text-lg font-bold text-[#0f5f8f]">
@@ -208,7 +208,7 @@ function App() {
                   direction="left"
                 >
                   <span className="absolute -left-[37px] mt-1 flex h-3 w-3 items-center justify-center rounded-full border-4 border-white bg-[#0f5f8f]"></span>
-                  <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-6 shadow-sm">
+                  <div className="rounded-3xl border border-slate-200 bg-slate-50/80 p-6 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-[#0f5f8f]/40">
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                       <div className="flex flex-col gap-3">
                         {experience.logo ? (
@@ -261,8 +261,8 @@ function App() {
                 title={language === "en" ? "Projects" : "Proyectos"}
                 description={
                   language === "en"
-                    ? "Snapshots of the outcomes I deliver across complex product initiatives."
-                    : "Instantáneas del impacto entregado en iniciativas de producto complejas."
+                    ? "Selected work that shows how I solve real problems for teams."
+                    : "Trabajo destacado que muestra cómo resuelvo problemas reales para los equipos."
                 }
                 align="left"
               />
@@ -271,9 +271,14 @@ function App() {
               {projectHighlights.map((project, index) => (
                 <Reveal
                   key={project.id}
-                  className="flex h-full flex-col rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm"
+                  className="flex h-full flex-col rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-[#0f5f8f]/40"
                   delay={index * 0.08}
                 >
+                  {project.company ? (
+                    <span className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#0f5f8f]">
+                      {project.company}
+                    </span>
+                  ) : null}
                   <h3 className="text-xl font-black text-slate-900">
                     {getText(project.title, language)}
                   </h3>
@@ -323,14 +328,14 @@ function App() {
             {educationRecords.map((record, index) => (
               <Reveal
                 key={record.institution}
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-[#0f5f8f]/40"
                 delay={index * 0.1}
               >
                 {record.logo ? (
                   <img
                     src={record.logo}
                     alt={`${record.institution} logo`}
-                    className="mb-4 h-12 w-auto object-contain"
+                    className="mb-4 h-18 w-auto object-contain"
                     loading="lazy"
                   />
                 ) : null}
@@ -360,16 +365,30 @@ function App() {
             {courseGroups.map((group, index) => (
               <Reveal
                 key={group.provider}
-                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-[#0f5f8f]/40"
                 delay={0.1 * (educationRecords.length + index)}
               >
                 {group.logo ? (
-                  <img
-                    src={group.logo}
-                    alt={`${group.provider} logo`}
-                    className="mb-4 h-10 w-auto object-contain"
-                    loading="lazy"
-                  />
+                  <div
+                    className={`mb-4 inline-flex items-center justify-center rounded-xl border border-slate-200 ${
+                      group.provider === "DevTalles" || group.provider === "Udemy"
+                        ? "bg-slate-900"
+                        : "bg-white"
+                    } px-4 py-2`}
+                  >
+                    <img
+                      src={group.logo}
+                      alt={`${group.provider} logo`}
+                      className={
+                        group.provider === "DevTalles"
+                          ? "h-8 w-auto object-contain"
+                          : group.provider === "Udemy"
+                          ? "h-8 w-auto object-contain"
+                          : "h-12 w-auto object-contain"
+                      }
+                      loading="lazy"
+                    />
+                  </div>
                 ) : null}
                 <h3 className="text-lg font-bold text-[#0f5f8f]">
                   {group.provider}
@@ -429,7 +448,7 @@ function App() {
 
               <div>
                 <Reveal
-                  className="rounded-3xl border border-white/20 bg-white/15 p-6 backdrop-blur"
+                  className="rounded-3xl border border-white/20 bg-white/15 p-6 backdrop-blur transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-white/40"
                   direction="up"
                   delay={0.1}
                 >
